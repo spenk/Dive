@@ -20,23 +20,23 @@ public class DiveListener extends PluginListener{
 		String[] split = hook.getCommand();
 		if (split[0].equalsIgnoreCase("/dive")) {
 			if (!player.hasPermission("Dive.dive")) {
-				player.notify("§f[§aDive§f]§c You cant use this command!");
+				player.notify("ï¿½f[ï¿½aDiveï¿½f]ï¿½c You cant use this command!");
 				hook.setCancelled();
 				return hook;
 			}
 				if (players.contains(player.getName())) {
-					player.notify("§f[§aDive§f]§1 You stopped diving, You can now remove the glass from your head");
+					player.notify("ï¿½f[ï¿½aDiveï¿½f]ï¿½1 You stopped diving, You can now remove the glass from your head");
 					players.remove(player.getName());
 					hook.setCancelled();
 					return hook;
 				}
 				if (player.getItemHeld() == null) {
-					player.notify("§f[§aDive§f]§c Please hold an glass block in order to dive!");
+					player.notify("ï¿½f[ï¿½aDiveï¿½f]ï¿½c Please hold an glass block in order to dive!");
 					hook.setCancelled();
 					return hook;
 				}
 				if (player.getItemHeld().getId() != 20) {
-					player.notify("§f[§aDive§f]§c Please hold an glass block in order to dive!");
+					player.notify("ï¿½f[ï¿½aDiveï¿½f]ï¿½c Please hold an glass block in order to dive!");
 					hook.setCancelled();
 					return hook;
 				}
@@ -49,11 +49,11 @@ public class DiveListener extends PluginListener{
 				}
 				player.getInventory().setSlot(20, 1, 39);
 				players.add(player.getName());
-				player.sendMessage("§f[§aDive§f]§1 You can now dive!");
+				player.sendMessage("ï¿½f[ï¿½aDiveï¿½f]ï¿½1 You can now dive!");
 				hook.setCancelled();
 				return hook;
 		}
-				player.notify("§f[§aDive§f]§c Please remove the contents from your helmet slot!");
+				player.notify("ï¿½f[ï¿½aDiveï¿½f]ï¿½c Please remove the contents from your helmet slot!");
 				hook.setCancelled();
 				return hook;
 		}
@@ -87,3 +87,6 @@ public class DiveListener extends PluginListener{
 		return null;
 	}
 }
+/**
+ * @author spenk
+ * /
