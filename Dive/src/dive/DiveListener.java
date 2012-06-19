@@ -1,3 +1,9 @@
+/**
+ * @name Dive
+ * @version 1.0[r]
+ * @author spenk
+ */
+
 package dive;
 
 import java.util.ArrayList;
@@ -14,29 +20,36 @@ import net.canarymod.plugin.PluginListener;
 public class DiveListener extends PluginListener{
 	
 	ArrayList<String> players = new ArrayList<String>();
+
+	/**
+	 *@param hook
+	 *@return PlayerCommandHook 
+	 *
+	 *adds the player to arraylist <players> and puts the item on playes head slot
+	 */
 	
 	public Hook onCommand(PlayerCommandHook hook) {
 		Player player = hook.getPlayer();
 		String[] split = hook.getCommand();
 		if (split[0].equalsIgnoreCase("/dive")) {
 			if (!player.hasPermission("Dive.dive")) {
-				player.notify("ï¿½f[ï¿½aDiveï¿½f]ï¿½c You cant use this command!");
+				player.notify("§f[§aDive§f]§c You cant use this command!");
 				hook.setCancelled();
 				return hook;
 			}
 				if (players.contains(player.getName())) {
-					player.notify("ï¿½f[ï¿½aDiveï¿½f]ï¿½1 You stopped diving, You can now remove the glass from your head");
+					player.notify("§f[§aDive§f]§1 You stopped diving, You can now remove the glass from your head");
 					players.remove(player.getName());
 					hook.setCancelled();
 					return hook;
 				}
 				if (player.getItemHeld() == null) {
-					player.notify("ï¿½f[ï¿½aDiveï¿½f]ï¿½c Please hold an glass block in order to dive!");
+					player.notify("§f[§aDive§f]§c Please hold an glass block in order to dive!");
 					hook.setCancelled();
 					return hook;
 				}
 				if (player.getItemHeld().getId() != 20) {
-					player.notify("ï¿½f[ï¿½aDiveï¿½f]ï¿½c Please hold an glass block in order to dive!");
+					player.notify("§f[§aDive§f]§c Please hold an glass block in order to dive!");
 					hook.setCancelled();
 					return hook;
 				}
@@ -49,16 +62,23 @@ public class DiveListener extends PluginListener{
 				}
 				player.getInventory().setSlot(20, 1, 39);
 				players.add(player.getName());
-				player.sendMessage("ï¿½f[ï¿½aDiveï¿½f]ï¿½1 You can now dive!");
+				player.sendMessage("§f[§aDive§f]§1 You can now dive!");
 				hook.setCancelled();
 				return hook;
 		}
-				player.notify("ï¿½f[ï¿½aDiveï¿½f]ï¿½c Please remove the contents from your helmet slot!");
+				player.notify("§f[§aDive§f]§c Please remove the contents from your helmet slot!");
 				hook.setCancelled();
 				return hook;
 		}
 		return hook;
 	}
+	
+	/**
+	 * @param hook
+	 * @return DamageHook
+	 * 
+	 * prevents damage
+	 */
 	
 	public Hook onDamage(DamageHook hook) {
 		if (hook.getDefender().isLiving()) {
@@ -77,6 +97,14 @@ public class DiveListener extends PluginListener{
 		return hook;
 	}
 
+	/**
+	 * @param ia
+	 * @param slot
+	 * @return Item
+	 * 
+	 * @represents item.getItemFromSlot();
+	 */
+	
 	public Item getItemFromSlot(Item[] ia, int slot) {
 		if (ia == null){return null;}
 		for (Item item : ia) {
@@ -87,6 +115,3 @@ public class DiveListener extends PluginListener{
 		return null;
 	}
 }
-/**
- * @author spenk
- * /
